@@ -1,0 +1,59 @@
+# ----------------------------------------------------------
+# gateway-service.yml - External config for gateway-service
+# Used by Spring Cloud Config Server
+# ----------------------------------------------------------
+
+server:
+  port: 8080  # The API Gateway runs on port 8080
+
+spring:
+  application:
+    name: gateway-service  # Must match bootstrap.yml
+
+  cloud:
+    gateway:
+      routes:
+        # ----------------------------- #
+        # Route for User Service
+        # ----------------------------- #
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/users/**
+          filters:
+            - StripPrefix=2
+
+        # ----------------------------- #
+        # Route for Product Service
+        # ----------------------------- #
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/api/products/**
+          filters:
+            - StripPrefix=2
+
+        # ----------------------------- #
+        # Route for Order Service
+        # ----------------------------- #
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/api/orders/**
+          filters:
+            - StripPrefix=2
+
+        # ----------------------------- #
+        # Route for Payment Service
+        # ----------------------------- #
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+            - Path=/api/payments/**
+          filters:
+            - StripPrefix=2
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka  # Eureka discovery
