@@ -20,8 +20,8 @@ spring:
           uri: lb://user-service
           predicates:
             - Path=/api/users/**
-          filters:
-            - StripPrefix=2
+          # filters:
+          #   - StripPrefix=2
 
         # ----------------------------- #
         # Route for Product Service
@@ -40,8 +40,8 @@ spring:
           uri: lb://order-service
           predicates:
             - Path=/api/orders/**
-          filters:
-            - StripPrefix=2
+          # filters:
+          #   - StripPrefix=2
 
         # ----------------------------- #
         # Route for Payment Service
@@ -50,8 +50,8 @@ spring:
           uri: lb://payment-service
           predicates:
             - Path=/api/payments/**
-          filters:
-            - StripPrefix=2
+          # filters:
+          #   - StripPrefix=2
 
 eureka:
   client:
