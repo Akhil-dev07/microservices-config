@@ -12,6 +12,7 @@ spring:
 
   cloud:
     gateway:
+        mvc:
       routes:
         # ----------------------------- #
         # Route for User Service
