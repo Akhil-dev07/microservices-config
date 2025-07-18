@@ -53,6 +53,11 @@ spring:
           # filters:
           #   - StripPrefix=2
 
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.loadbalancer: DEBUG
+
 eureka:
   client:
     service-url:
