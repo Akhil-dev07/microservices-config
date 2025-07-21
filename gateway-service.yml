@@ -9,6 +9,8 @@ server:
 spring:
   application:
     name: gateway-service
+jwt:
+  secret: my-very-secret-key-1234567890123456  # ✅ Shared JWT secret key (must match auth-service)
 
   cloud:
     gateway:
