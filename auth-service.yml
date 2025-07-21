@@ -1,0 +1,21 @@
+# ✅ auth-service.yml (to be placed in your Spring Cloud Config repo)
+
+server:
+  port: 8084  # ✅ Port for auth-service
+
+spring:
+  application:
+    name: auth-service  # ✅ Must match the service name used in discovery
+
+  config:
+    import: optional:configserver:
+
+jwt:
+  secret: my-very-secret-key-1234567890123456  # ✅ Shared JWT secret key (must match gateway-service)
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
