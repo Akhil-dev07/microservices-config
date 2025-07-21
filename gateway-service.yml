@@ -8,14 +8,24 @@ server:
 
 spring:
   application:
-    name: gateway-service  # Must match bootstrap.yml
+    name: gateway-service
 
   cloud:
     gateway:
       mvc:
         routes:
         # ----------------------------- #
-        # Route for User Service
+        # Route for Auth Service       #
+        # ----------------------------- #
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/auth/**
+          # filters:
+          #   - StripPrefix=2
+
+        # ----------------------------- #
+        # Route for User Service       #
         # ----------------------------- #
         - id: user-service
           uri: lb://user-service
@@ -25,17 +35,17 @@ spring:
           #   - StripPrefix=2
 
         # ----------------------------- #
-        # Route for Product Service
+        # Route for Product Service    #
         # ----------------------------- #
         - id: product-service
           uri: lb://product-service
           predicates:
             - Path=/api/products/**
-          filters:
-            - StripPrefix=2
+          # filters:
+          #   - StripPrefix=2
 
         # ----------------------------- #
-        # Route for Order Service
+        # Route for Order Service      #
         # ----------------------------- #
         - id: order-service
           uri: lb://order-service
@@ -45,7 +55,7 @@ spring:
           #   - StripPrefix=2
 
         # ----------------------------- #
-        # Route for Payment Service
+        # Route for Payment Service    #
         # ----------------------------- #
         - id: payment-service
           uri: lb://payment-service
