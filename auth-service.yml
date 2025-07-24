@@ -8,7 +8,7 @@ spring:
     name: auth-service  # ✅ Must match the service name used in discovery
 
   config:
-    import: optional:configserver:
+    import: "optional:configserver:"
 
 jwt:
   secret: my-very-secret-key-1234567890123456  # ✅ Shared JWT secret key (must match gateway-service)
